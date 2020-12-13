@@ -15,6 +15,8 @@ class Pictures {
         this.setReactionType(value);
         e.target.parentElement.querySelectorAll("span").forEach(obj => obj.classList.remove('highlight'));
         e.target.classList.add("highlight");
+        e.stopPropagation();
+        e.preventDefault();
     }
 
     getTemplate = params => {
