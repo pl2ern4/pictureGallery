@@ -1,9 +1,11 @@
 class Pictures {
     reaction = 0;
     setFn;
-    constructor(fn, reacted){
+    page=1;
+    constructor(fn, reacted, page){
         this.reaction = reacted || "0";
         this.setFn=fn;
+        this.page = page;
     }
 
     setReactionType = param => {
