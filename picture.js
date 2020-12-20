@@ -1,17 +1,25 @@
 class Pictures {
     reaction = 0;
+    setFn;
+    constructor(fn, reacted){
+        this.reaction = reacted || "0";
+        this.setFn=fn;
+    }
 
     setReactionType = param => {
         this.reaction = param;
+        this.isReacted=param;
         return this.reaction;
     }
-
-    changeClass = (e, value) => {
-        this.setReactionType(value);
+    
+    
+    changeClass = (e, params) => {
+        this.setReactionType(params.value);
         e.target.parentElement.querySelectorAll("span").forEach(obj => obj.classList.remove('highlight'));
         e.target.classList.add("highlight");
         e.stopPropagation();
         e.preventDefault();
+        this.setFn(params);
     }
 
     clickImage = e => {
@@ -30,8 +38,8 @@ class Pictures {
                         <div class="image-wrapper">
                             <img width="250" height="250" alt="${params.alt_description||""}" src="${params.urls.regular}"/>
                                 <div class="reaction">
-                                    <span class="like ${this.reaction === 1 && `highlight` || ``}" id="like_${params.user.id}" class="like">like</span>
-                                    <span class="dislike ${this.reaction === -1 && `highlight` || ``}" id="dislike_${params.user.id}">Dislike</span>
+                                    <span class="like ${(this.reaction == 1 && `highlight`) || ``}" id="like_${params.id}" class="like">like</span>
+                                    <span class="dislike ${(this.reaction == -1 && `highlight`) || ``}" id="dislike_${params.id}">Dislike</span>
                                 </div>
                                 <div class='blur'></div>
                             </div>
@@ -40,8 +48,8 @@ class Pictures {
 
         template.innerHTML = html;
         template.querySelector("img").addEventListener("click", e => this.clickImage(e));
-        template.querySelector(`#like_${params.user.id}`).addEventListener("click", e => this.changeClass(e, 1));
-        template.querySelector(`#dislike_${params.user.id}`).addEventListener("click", e => this.changeClass(e, -1));
+        template.querySelector(`#like_${params.id}`).addEventListener("click", e => this.changeClass(e, {id: params.id, value:1}));
+        template.querySelector(`#dislike_${params.id}`).addEventListener("click", e => this.changeClass(e, {id: params.id, value:-1}));
         document.getElementById("root").appendChild(template);
     }
 }

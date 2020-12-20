@@ -43,6 +43,7 @@ img{
     margin: 0 auto;
     background-color: black;
     font-weight: 800;
+    opacity: 0.6;
     color: white;
 }
 .reaction .dislike{
