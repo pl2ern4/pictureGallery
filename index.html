@@ -6,9 +6,20 @@
     </head>
 
     <body>
-        <form>
-            <input id="search" autocomplete="off" name="search">
-        </form>
+        <div class="header">
+            <div class="header-text">
+                Picture Gallery
+            </div>
+            <div class="search-wrapper">
+                <form>
+                    <input id="search" autocomplete="off" name="search">
+                    <button type="submit">
+                        <img src="loupe.png" alt="search-img" width="25" height="25"/>
+                    </button>
+                </form>
+            </div>
+        </div>
+        
         <div id="root"></div>
         <div class="modal">
             <span class="close" onclick="closeDiv()">&times;</span>

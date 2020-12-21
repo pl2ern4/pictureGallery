@@ -36,8 +36,7 @@ class Pictures {
     getTemplate = params => {
         let template = document.createElement("div");
         template.setAttribute("class", "table-test");
-        let html = `<div class="table-test">    
-                        <div class="image-wrapper">
+        let html = `<div class="image-wrapper">
                             <img width="250" height="250" alt="${params.alt_description||""}" src="${params.urls.regular}"/>
                                 <div class="reaction">
                                     <span class="like ${(this.reaction == 1 && `highlight`) || ``}" id="like_${params.id}" class="like">like</span>
@@ -45,7 +44,6 @@ class Pictures {
                                 </div>
                                 <div class='blur'></div>
                             </div>
-                        </div>
                     </div>`;
 
         template.innerHTML = html;
